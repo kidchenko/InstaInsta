@@ -14,7 +14,7 @@
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css' />
     </head>
-    <body>
+    <body ng-controller="HomeController as Home">
 		<div class="container">
 			<div id="overlay" class="content">
 			</div>
@@ -22,7 +22,12 @@
 				<a href="#"><img src="images/1.jpg"></img></a>
 			</div>
 		</div>
+
+   
+		<button type="button" ng-click="pegaDados()">Clique me</button>
+
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
+		<script type="text/javascript" src="../content/js/socket.io.min.js"></script>
 		<script type="text/javascript" src="../content/js/jquery.montage.min.js"></script>
 		<script type="text/javascript" src="../content/js/angular.min.js"></script>
 		<script type="text/javascript" src="../content/js/app.js"></script>
