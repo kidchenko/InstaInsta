@@ -26,7 +26,6 @@
         self.maisRecente = function(){
             socket.on('firstShow', function (data) {
                 $.each(data.firstShow, function(index, data){
-                    console.log(data);
                     self.Imagens.push({
                         type: data.type,
                         Url: data.link,
@@ -36,8 +35,16 @@
                     });
                 })
                 self.$apply()
-                Estilos.Estilo1();
+                Estilos.Estilo4();
             });
         };
+
+            self.escolheEstilo = function(numeroEstilo){
+                if (numeroEstilo === 1) Estilos.Estilo1();
+                if (numeroEstilo === 2) Estilos.Estilo2();
+                if (numeroEstilo === 3) Estilos.Estilo3();
+                if (numeroEstilo === 4) Estilos.Estilo4();
+                if (numeroEstilo === 5) Estilos.Estilo5();
+            }
     }]);
 })(this);

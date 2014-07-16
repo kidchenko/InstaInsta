@@ -9,12 +9,10 @@
         <meta name="keywords" content="nodejs, javascript, instagran, real time" />
 		<meta name="author" content="Weslley Neri" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="/css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="/css/style.css" />
-		<link rel="stylesheet" type="text/css" href="/css/metro-bootstrap.css" />
-		<link rel="stylesheet" type="text/css" href="/css/metro-bootstrap-responsive.css" />
-		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
-		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css' />
+        <link rel="stylesheet"  href="/css/demo.css" />
+		<link rel="stylesheet"  href="/css/style.css" />
+		<link rel="stylesheet"  href="/css/metro-bootstrap.css" />
+		<link rel="stylesheet"  href="http://metroui.org.ua/css/iconFont.css" />
     </head>
     <body ng-controller="HomeController" class="metro">
 
@@ -32,27 +30,22 @@
                 <li>
                     <a class="dropdown-toggle" href="#">Community</a>
                     <ul class="dropdown-menu dark" data-role="dropdown">
-                        <li class="disabled"><a href="http://blog.metroui.net">Blog</a></li>
-                        <li class="disabled"><a href="http://forum.metroui.net">Community Forum</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
-                        <li class="divider"></li>
-                        <li><a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">License</a></li>
+                        <li><a href="#" ng-click="maisRecente(1)">Estilo 1</a></li>
+                        <li><a href="#" ng-click="maisRecente(2)">Estilo 2</a></li>
+                        <li><a href="#" ng-click="maisRecente(3)">Estilo 3</a></li>
+                        <li><a href="#" ng-click="maisRecente(4)">Estilo 4</a></li>
+                        <li><a href="#" ng-click="maisRecente(5)">Estilo 5</a></li>
                     </ul>
                 </li>
             </ul>
 
             <div class="no-tablet-portrait">
                 <span class="element-divider"></span>
-                <a class="element brand" href="#"><span class="icon-spin"></span></a>
-                <a class="element brand" href="#"><span class="icon-printer"></span></a>
-                <span class="element-divider"></span>
 
                 <div class="element input-element">
                     <form>
                         <div class="input-control text">
-                            <input type="text" placeholder="Search...">
-                            <button class="btn-search"></button>
+                            <input type="text" placeholder="Search..." value="Macbook">
                         </div>
                     </form>
                 </div>
@@ -60,11 +53,6 @@
         </div>
         </div>
     </nav>
-
-
-
-
-
 
 
 		<div class="container" ng-init="maisRecente()">
@@ -77,13 +65,14 @@
 		</div>
 
 
-		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="/js/metro.min.js"></script>
-		<script type="text/javascript" src="/js/metro-dropdown.js"></script>
+		<script type="text/javascript" src="http://metroui.org.ua/js/jquery/jquery.min.js"></script>
+        <script type="text/javascript" src="http://metroui.org.ua/js/jquery/jquery.widget.min.js"></script>
+        <script type="text/javascript" src="http://metroui.org.ua/js/load-metro.js"></script>
 		<script type="text/javascript" src="/js/socket.io.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.montage.min.js"></script>
 		<script type="text/javascript" src="/js/angular.min.js"></script>
 		<script type="text/javascript" src="/js/loader.js"></script>
 		<script type="text/javascript" src="/js/app.js"></script>
+
     </body>
 </html>
