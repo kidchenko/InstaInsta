@@ -9,81 +9,81 @@
         <meta name="keywords" content="nodejs, javascript, instagran, real time" />
 		<meta name="author" content="Weslley Neri" />
 		<link rel="shortcut icon" href="../favicon.ico"> 
-        <link rel="stylesheet" type="text/css" href="css/demo.css" />
-		<link rel="stylesheet" type="text/css" href="css/style.css" />
+        <link rel="stylesheet" type="text/css" href="/css/demo.css" />
+		<link rel="stylesheet" type="text/css" href="/css/style.css" />
+		<link rel="stylesheet" type="text/css" href="/css/metro-bootstrap.css" />
+		<link rel="stylesheet" type="text/css" href="/css/metro-bootstrap-responsive.css" />
 		<link href='http://fonts.googleapis.com/css?family=PT+Sans+Narrow&v1' rel='stylesheet' type='text/css' />
 		<link href='http://fonts.googleapis.com/css?family=Monoton' rel='stylesheet' type='text/css' />
     </head>
-    <body ng-controller="HomeController as Home">
-		<div class="container">
+    <body ng-controller="HomeController" class="metro">
+
+
+    <nav class="navigation-bar dark">
+        <div class="navigation-bar-content">
+            <a href="/" class="element">LOGO AQUI</a>
+            <span class="element-divider"></span>
+
+            <a class="pull-menu" href="#"></a>
+            <ul class="element-menu">
+                <li>
+                    <a href="#">Base CSS</a>
+                </li>
+                <li>
+                    <a class="dropdown-toggle" href="#">Community</a>
+                    <ul class="dropdown-menu dark" data-role="dropdown">
+                        <li class="disabled"><a href="http://blog.metroui.net">Blog</a></li>
+                        <li class="disabled"><a href="http://forum.metroui.net">Community Forum</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://github.com/olton/Metro-UI-CSS">Github</a></li>
+                        <li class="divider"></li>
+                        <li><a href="https://github.com/olton/Metro-UI-CSS/blob/master/LICENSE">License</a></li>
+                    </ul>
+                </li>
+            </ul>
+
+            <div class="no-tablet-portrait">
+                <span class="element-divider"></span>
+                <a class="element brand" href="#"><span class="icon-spin"></span></a>
+                <a class="element brand" href="#"><span class="icon-printer"></span></a>
+                <span class="element-divider"></span>
+
+                <div class="element input-element">
+                    <form>
+                        <div class="input-control text">
+                            <input type="text" placeholder="Search...">
+                            <button class="btn-search"></button>
+                        </div>
+                    </form>
+                </div>
+
+        </div>
+        </div>
+    </nav>
+
+
+
+
+
+
+
+		<div class="container" ng-init="maisRecente()">
 			<div id="overlay" class="content">
 			</div>
 			<div class="am-container" id="am-container">
-				<a href="#"><img src="images/1.jpg"></img></a>
+				<a ng-repeat="image in Imagens" href="{{image.Url}}" target="_blank" title="Click to go to Instagran"><img ng-src="{{image.ImageSrc}}"></img></a>
 			</div>
+
 		</div>
 
-   
-		<button type="button" ng-click="pegaDados()">Clique me</button>
 
 		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
-		<script type="text/javascript" src="../content/js/socket.io.min.js"></script>
-		<script type="text/javascript" src="../content/js/jquery.montage.min.js"></script>
-		<script type="text/javascript" src="../content/js/angular.min.js"></script>
-		<script type="text/javascript" src="../content/js/app.js"></script>
-		<script type="text/javascript">
-			$(function() {
-				/* 
-				 * just for this demo:
-				 */
-				$('#showcode').toggle(
-					function() {
-						$(this).addClass('up').removeClass('down').next().slideDown();
-					},
-					function() {
-						$(this).addClass('down').removeClass('up').next().slideUp();
-					}
-				);
-				$('#panel').toggle(
-					function() {
-						$(this).addClass('show').removeClass('hide');
-						$('#overlay').stop().animate( { left : - $('#overlay').width() + 20 + 'px' }, 300 );
-					},
-					function() {
-						$(this).addClass('hide').removeClass('show');
-						$('#overlay').stop().animate( { left : '0px' }, 300 );
-					}
-				);
-				
-				var $container 	= $('#am-container'),
-					$imgs		= $container.find('img').hide(),
-					totalImgs	= $imgs.length,
-					cnt			= 0;
-				
-				$imgs.each(function(i) {
-					var $img	= $(this);
-					$('<img/>').load(function() {
-						++cnt;
-						if( cnt === totalImgs ) {
-							$imgs.show();
-							$container.montage({
-								fillLastRow				: true,
-								alternateHeight			: true,
-								alternateHeightRange	: {
-									min	: 90,
-									max	: 240
-								}
-							});
-							
-							/* 
-							 * just for this demo:
-							 */
-							$('#overlay').fadeIn(500);
-						}
-					}).attr('src',$img.attr('src'));
-				});	
-				
-			});
-		</script>
+		<script type="text/javascript" src="/js/metro.min.js"></script>
+		<script type="text/javascript" src="/js/metro-dropdown.js"></script>
+		<script type="text/javascript" src="/js/socket.io.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.montage.min.js"></script>
+		<script type="text/javascript" src="/js/angular.min.js"></script>
+		<script type="text/javascript" src="/js/loader.js"></script>
+		<script type="text/javascript" src="/js/app.js"></script>
     </body>
 </html>

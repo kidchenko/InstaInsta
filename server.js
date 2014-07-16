@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-var port = process.env.PORT || 8000;
+var port = 8000;
 var io = require('socket.io').listen(app.listen(port));
 var Instagram = require('instagram-node-lib');
 var http = require('http');
@@ -18,16 +18,16 @@ var pub = __dirname + '/content',
 * Set the 'client ID' and the 'client secret' to use on Instagram
 * @type {String}
 */
-var clientID = 'YOUR_CLIENT_ID',
-    clientSecret = 'YOUR_CLIENT_SECRET';
+var clientID = '11a8266f79ec4aebb8a210af5684a480',
+    clientSecret = '11a8266f79ec4aebb8a210af5684a480';
 
 /**
 * Set the configuration
 */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
-Instagram.set('callback_url', 'http://YOUR_URL.com/callback');
-Instagram.set('redirect_uri', 'http://YOUR_URL.com');
+Instagram.set('callback_url', 'http://localhost:8000/callback');
+Instagram.set('redirect_uri', 'http://localhost:8000');
 Instagram.set('maxSockets', 10);
 
 /**
@@ -39,7 +39,7 @@ Instagram.subscriptions.subscribe({
   object: 'tag',
   object_id: 'macbook',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://localhost:8000/callback',
   type: 'subscription',
   id: '#'
 });
@@ -53,7 +53,7 @@ Instagram.subscriptions.subscribe({
   object: 'tag',
   object_id: 'macbookpro',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://localhost:8000/callback',
   type: 'subscription',
   id: '#'
 });
@@ -67,7 +67,7 @@ Instagram.subscriptions.subscribe({
   object: 'tag',
   object_id: 'apple',
   aspect: 'media',
-  callback_url: 'http://YOUR_URL.com/callback',
+  callback_url: 'http://localhost:8000/callback',
   type: 'subscription',
   id: '#'
 });
@@ -116,7 +116,7 @@ app.get("/views", function(req, res){
 */
 io.sockets.on('connection', function (socket) {
   Instagram.tags.recent({
-      name: 'lollapalooza',
+      name: 'macbook',
       complete: function(data) {
         socket.emit('firstShow', { firstShow: data });
       }
