@@ -8,21 +8,19 @@ var request = ('request');
 var intervalID;
 
 /**
-* Set the paths for your files
-* @type {[string]}
+* Diretorios para as pastas raizes
 */
 var pub = __dirname + '/content',
     view = __dirname + '/views';
 
 /**
-* Set the 'client ID' and the 'client secret' to use on Instagram
-* @type {String}
+* 'client ID' e o 'client secret' para usar o Instagram
 */
-var clientID = '11a8266f79ec4aebb8a210af5684a480',
-    clientSecret = '11a8266f79ec4aebb8a210af5684a480';
+var clientID = '',
+    clientSecret = '';
 
 /**
-* Set the configuration
+* Configuracoes
 */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
@@ -31,49 +29,21 @@ Instagram.set('redirect_uri', 'http://localhost:8000');
 Instagram.set('maxSockets', 10);
 
 /**
-* Uses the library "instagram-node-lib" to Subscribe to the Instagram API Real Time
-* with the tag "hashtag" lollapalooza
-* @type {String}
+* Usando a biblioteca "instagram-node-lib" para usar o Instagram em Real Time
+* com a hashtag (#) macbook
 */
 Instagram.subscriptions.subscribe({
   object: 'tag',
-  object_id: 'macbook',
+  object_id: 'iphone',
   aspect: 'media',
   callback_url: 'http://localhost:8000/callback',
   type: 'subscription',
   id: '#'
 });
 
-/**
-* Uses the library "instagram-node-lib" to Subscribe to the Instagram API Real Time
-* with the tag "hashtag" lollapalooza2013
-* @type {String}
-*/
-Instagram.subscriptions.subscribe({
-  object: 'tag',
-  object_id: 'macbookpro',
-  aspect: 'media',
-  callback_url: 'http://localhost:8000/callback',
-  type: 'subscription',
-  id: '#'
-});
 
-/**
-* Uses the library "instagram-node-lib" to Subscribe to the Instagram API Real Time
-* with the tag "hashtag" lolla2013
-* @type {String}
-*/
-Instagram.subscriptions.subscribe({
-  object: 'tag',
-  object_id: 'apple',
-  aspect: 'media',
-  callback_url: 'http://localhost:8000/callback',
-  type: 'subscription',
-  id: '#'
-});
-
-// if you want to unsubscribe to any hashtag you subscribe
-// just need to pass the ID Instagram send as response to you
+// Se precisar para de vizualizar uma hashtag
+// voce apenas precisa passar o Id que o Instagram ira mandar a resposta
 Instagram.subscriptions.unsubscribe({ id: '3668016' });
 
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
@@ -89,7 +59,7 @@ Instagram.subscriptions.unsubscribe({ id: '3668016' });
 // });
 
 /**
-* Set your app main configuration
+* App main Configuracao
 */
 app.configure(function(){
     app.use(express.bodyParser());
@@ -101,18 +71,18 @@ app.configure(function(){
 });
 
 /**
-* Render your index/view "my choice was not use jade"
+* Renderizar a pagina principal, nao usando jade
 */
 app.get("/views", function(req, res){
     res.render("index");
 });
 
-// check subscriptions
+// visualizar inscricoes
 // https://api.instagram.com/v1/subscriptions?client_secret=YOUR_CLIENT_ID&client_id=YOUR_CLIENT_SECRET
 
 /**
-* On socket.io connection we get the most recent posts
-* and send to the client side via socket.emit
+* Com o socket.io conectado, nos pegamos os posts mais recents
+* e enviamos para o cliente por meio do socket.emit
 */
 io.sockets.on('connection', function (socket) {
   Instagram.tags.recent({
@@ -124,22 +94,26 @@ io.sockets.on('connection', function (socket) {
 });
 
 /**
-* Needed to receive the handshake
+* Precisamos primeiramente do Handshake
 */
 app.get('/callback', function(req, res){
+    console.log('hand start');
     var handshake = Instagram.subscriptions.handshake(req, res);
+    console.log('hand done');
 });
 
 /**
-* for each new post Instagram send us the data
+* Para cada novo post no Instagram, ele vai nos enviar a resposta
 */
 app.post('/callback', function(req, res) {
+    console.log('POST');
     var data = req.body;
+    console.log(data);
 
-    // Grab the hashtag "tag.object_id"
-    // concatenate to the url and send as a argument to the client side
+    // Pegamos a hashtag "tag.object_id"
+    // concatenamos com a url e enviamos como argumento para o cliente
     data.forEach(function(tag) {
-      var url = 'https://api.instagram.com/v1/tags/' + tag.object_id + '/media/recent?client_id=CLIENT_ID';
+      var url = 'https://api.instagram.com/v1/tags/' + tag.object_id + '/media/recent?client_id=' + clientID;
       sendMessage(url);
 
     });
@@ -147,12 +121,14 @@ app.post('/callback', function(req, res) {
 });
 
 /**
-* Send the url with the hashtag to the client side
-* to do the ajax call based on the url
-* @param {[string]} url [the url as string with the hashtag]
+* Manda a url com a Hashtah para o cliente
+* para fazer o ajax chamar a url
+* @param {[string]} url [a string url com a hashtah]
+* @param {[string]} url [a string url com a hashtah]
 */
 function sendMessage(url) {
   io.sockets.emit('show', { show: url });
+    console.log('enviou');
 }
 
-console.log("Listening on port " + port);
+console.log("the Magic Happens on Port " + port);

@@ -3984,7 +3984,6 @@ a {
   bottom: 0;
   font-family: metroSysIcons;
   font-size: .7em;
-  content: '\e001';
 }
 .metro .dropdown-toggle.no-marker:after {
   content: "";
