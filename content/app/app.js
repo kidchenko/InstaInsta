@@ -7,21 +7,6 @@
         var self = $scope;
         self.Imagens = [];
 
-        self.pegaDados = function(){
-            var self = this;
-            socket.on('show', function(data) {
-                console.log('hi');
-                var url = data.show;
-                $.ajax({
-                    url: url,
-                    type: 'POST',
-                    crossDomain: true,
-                    dataType: 'jsonp'
-                }).done(function (data) {
-                    console.log(data);
-                });
-            });
-        };
         self.renderizaImagens = function(data){
             return {
                 type: data.type,
@@ -43,8 +28,8 @@
         };
 
         self.atualizar = function(){
-            alert('oi');
                 socket.on('show', function(data) {
+                    alert('nova imagem')
                     var url = data.show;
                     $.ajax({
                         url: url,
