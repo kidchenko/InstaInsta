@@ -53,16 +53,6 @@ Instagram.subscriptions.subscribe({
 });
 
 
-Instagram.subscriptions.subscribe({
-    object: 'tag',
-    object_id: 'lollapalooza',
-    aspect: 'media',
-    callback_url: urlSite +'callback',
-    type: 'subscription',
-    id: '#'
-});
-
-
 // Se precisar para de vizualizar uma hashtag
 // voce apenas precisa passar o Id que o Instagram ira mandar a resposta
 // Instagram.subscriptions.unsubscribe({ id: '3668016' });
