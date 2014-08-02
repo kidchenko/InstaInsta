@@ -39,7 +39,7 @@ Instagram.subscriptions.subscribe({
   aspect: 'media',
   callback_url: url + '/callback',
   type: 'subscription',
-  id: '33324'
+  id: '1'
 });
 
 
@@ -98,18 +98,14 @@ io.sockets.on('connection', function (socket) {
 * Precisamos primeiramente do Handshake
 */
 app.get('/callback', function(req, res){
-    console.log('hand start');
     var handshake = Instagram.subscriptions.handshake(req, res);
-    console.log('hand done');
 });
 
 /**
 * Para cada novo post no Instagram, ele vai nos enviar a resposta
 */
 app.post('/callback', function(req, res) {
-    console.log('POST');
     var data = req.body;
-    console.log(data);
 
     // Pegamos a hashtag "tag.object_id"
     // concatenamos com a url e enviamos como argumento para o cliente
@@ -129,7 +125,6 @@ app.post('/callback', function(req, res) {
 */
 function sendMessage(url) {
   io.sockets.emit('show', { show: url });
-    console.log('enviou');
 }
 
 console.log("the Magic Happens on Port " + port);
