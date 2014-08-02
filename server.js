@@ -1,6 +1,6 @@
 var express = require("express");
 var app = express();
-var port = 8000;
+var port = Number(process.env.PORT || 3000);
 var io = require('socket.io').listen(app.listen(port));
 var Instagram = require('instagram-node-lib');
 var http = require('http');
@@ -16,16 +16,16 @@ var pub = __dirname + '/content',
 /**
 * 'client ID' e o 'client secret' para usar o Instagram
 */
-var clientID = '',
-    clientSecret = '';
+var clientID = '11a8266f79ec4aebb8a210af5684a480',
+    clientSecret = '089b11e57b324f34a74254df778f382f';
 
 /**
 * Configuracoes
 */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
-Instagram.set('callback_url', 'http://localhost:8000/callback');
-Instagram.set('redirect_uri', 'http://localhost:8000');
+Instagram.set('callback_url', 'http://localhost:3000/callback');
+Instagram.set('redirect_uri', 'http://localhost:3000');
 Instagram.set('maxSockets', 10);
 
 /**
@@ -36,7 +36,7 @@ Instagram.subscriptions.subscribe({
   object: 'tag',
   object_id: 'iphone',
   aspect: 'media',
-  callback_url: 'http://localhost:8000/callback',
+  callback_url: 'http://localhost:3000/callback',
   type: 'subscription',
   id: '#'
 });

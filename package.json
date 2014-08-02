@@ -1,6 +1,7 @@
 {
   "name": "RealTimeInstagram",
   "version": "0.0.1",
+  "main": "server.js",
   "description": "Real time instagram",
   "author": "Weslley Neri",
   "dependencies": {
