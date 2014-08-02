@@ -39,13 +39,13 @@ Instagram.subscriptions.subscribe({
   aspect: 'media',
   callback_url: url + '/callback',
   type: 'subscription',
-  id: '#'
+  id: '33324'
 });
 
 
 // Se precisar para de vizualizar uma hashtag
 // voce apenas precisa passar o Id que o Instagram ira mandar a resposta
-Instagram.subscriptions.unsubscribe({ id: '3668016' });
+// Instagram.subscriptions.unsubscribe({ id: '3668016' });
 
 // https://devcenter.heroku.com/articles/using-socket-io-with-node-js-on-heroku
 io.configure(function () {
