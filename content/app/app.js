@@ -44,9 +44,13 @@
                         crossDomain: true,
                         dataType: 'jsonp'
                     }).done(function (result) {
-
-                        self.Imagens.push(self.renderizaImagens(result.data[0]));
-
+                        $.each(result.data, function(index, data){
+                            $.each(self.Imagens, function(index, image){
+                                if (image.Url !== data.link) {
+                                    self.Imagens.unshift(self.renderizaImagens(data));
+                                }
+                            })
+                        })
                         self.$apply()
                     });
                 });
