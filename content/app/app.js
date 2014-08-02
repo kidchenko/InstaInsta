@@ -7,6 +7,11 @@
         var self = $scope;
         self.Imagens = [];
 
+        self.init = function(){
+            self.maisRecente();
+            self.atualizar();
+        };
+
         self.renderizaImagens = function(data){
             return {
                 type: data.type,
