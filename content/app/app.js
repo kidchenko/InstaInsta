@@ -9,8 +9,8 @@
 
         self.pegaDados = function(){
             var self = this;
-            console.log('oi');
             socket.on('show', function(data) {
+                console.log('hi');
                 var url = data.show;
                 $.ajax({
                     url: url,
