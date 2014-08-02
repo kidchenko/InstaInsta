@@ -25,7 +25,7 @@ var clientID = '11a8266f79ec4aebb8a210af5684a480',
 */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
-Instagram.set('callback_url', 'http://instainsta1.herokuapp.com/callbackk');
+Instagram.set('callback_url', urlSite + 'callback');
 Instagram.set('redirect_uri', urlSite);
 Instagram.set('maxSockets', 10);
 
@@ -37,7 +37,7 @@ Instagram.subscriptions.subscribe({
   object: 'tag',
   object_id: 'macbook',
   aspect: 'media',
-  callback_url: 'http://instainsta1.herokuapp.com/callbackk',
+  callback_url: urlSite + 'callback',
   type: 'subscription',
   id: '#'
 });
