@@ -18,6 +18,7 @@
         };
 
         self.maisRecente = function(){
+            alert('carrega inicial')
             socket.on('firstShow', function (data) {
                 $.each(data.firstShow, function(index, data){
                     self.Imagens.push(self.renderizaImagens(data));
@@ -28,6 +29,7 @@
         };
 
         self.atualizar = function(){
+            alert('ataliza');
                 socket.on('show', function(data) {
                     alert('nova imagem')
                     var url = data.show;
