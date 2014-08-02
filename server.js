@@ -1,7 +1,7 @@
 var express = require("express");
 var app = express();
 var port = Number(process.env.PORT || 3000);
-var url = "http://instainsta1.herokuapp.com/";
+var url = "http://instainsta1.herokuapp.com";
 var io = require('socket.io').listen(app.listen(port));
 var Instagram = require('instagram-node-lib');
 var http = require('http');
@@ -39,7 +39,7 @@ Instagram.subscriptions.subscribe({
   aspect: 'media',
   callback_url: url + '/callback',
   type: 'subscription',
-  id: '1'
+  id: '#'
 });
 
 
