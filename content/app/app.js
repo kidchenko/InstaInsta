@@ -42,7 +42,6 @@
                         dataType: 'jsonp'
                     }).done(function (result) {
                         self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                        self.Imagens.unshift(self.renderizaImagens(result.data[1]));
                         self.$apply()
                     });
                 });
