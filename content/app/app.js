@@ -44,7 +44,7 @@
                         crossDomain: true,
                         dataType: 'jsonp'
                     }).done(function (result) {
-                        $.each(result, function(index, data){
+                        $.each(result.data, function(index, data){
                             self.Imagens.push(self.renderizaImagens(data));
                         })
                         self.$apply()
