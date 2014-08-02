@@ -115,6 +115,7 @@ app.get('/callback', function(req, res){
 * Para cada novo post no Instagram, ele vai nos enviar a resposta
 */
 app.post('/callback', function(req, res) {
+    var data = req.body;
     // Pegamos a hashtag "tag.object_id"
     // concatenamos com a url e enviamos como argumento para o cliente
     data.forEach(function(tag) {
