@@ -25,7 +25,7 @@ var clientID = '11a8266f79ec4aebb8a210af5684a480',
 */
 Instagram.set('client_id', clientID);
 Instagram.set('client_secret', clientSecret);
-Instagram.set('callback_url', 'http://instainsta1.herokuapp.com/callback123');
+Instagram.set('callback_url', 'http://instainsta1.herokuapp.com/callback1234');
 Instagram.set('redirect_uri', urlSite);
 Instagram.set('maxSockets', 10);
 
