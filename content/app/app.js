@@ -68,7 +68,7 @@
                             if (self.Imagens.length >= 29) {
                                 self.Imagens.splice(29, 1);
                             }
-                            if (indexOf.call(self.Imagens, result.data[0].id) !== -1) {
+                            if (indexOf.call(self.Imagens, result.data[0].id) === -1) {
                                 self.Imagens.unshift(self.renderizaImagens(result.data[0]));
                                 self.$apply()
                             }
