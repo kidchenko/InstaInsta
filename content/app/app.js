@@ -1,4 +1,26 @@
-(function() {    
+(function() {
+
+    var indexOf = function(needle) {
+        if(typeof Array.prototype.indexOf === 'function') {
+            indexOf = Array.prototype.indexOf;
+        } else {
+            indexOf = function(needle) {
+                var i = -1, index = -1;
+
+                for(i = 0; i < this.length; i++) {
+                    if(this[i].id === needle) {
+                        index = i;
+                        break;
+                    }
+                }
+                return index;
+            };
+        }
+
+        return indexOf.call(this, needle);
+    };
+
+
     var socket = io.connect(window.location.origin);
 
     angular.module('instainsta', [])
@@ -46,8 +68,10 @@
                             if (self.Imagens.length >= 29) {
                                 self.Imagens.splice(29, 1);
                             }
-                            self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                            self.$apply()
+                            if (indexOf.call(self.Imagens, result.data[0].id) !== -1) {
+                                self.Imagens.unshift(self.renderizaImagens(result.data[0]));
+                                self.$apply()
+                            }
                         }), 3000);
 
                 });
