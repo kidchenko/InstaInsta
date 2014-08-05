@@ -14,6 +14,7 @@
 
         self.renderizaImagens = function(data){
             return {
+                Id: data.id,
                 type: data.type,
                 Url: data.link,
                 ImageSrc: data.images.low_resolution.url,
@@ -41,6 +42,9 @@
                         crossDomain: true,
                         dataType: 'jsonp'
                     }).done(function (result) {
+                        if (self.Imagens.length >= 29) {
+                            self.Imagens.splice(29, 1);
+                        }
                         self.Imagens.unshift(self.renderizaImagens(result.data[0]));
                         self.$apply()
                     });
