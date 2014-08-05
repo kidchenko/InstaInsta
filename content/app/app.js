@@ -1,25 +1,5 @@
 (function() {
 
-    var indexOf = function(needle) {
-        if(typeof Array.prototype.indexOf === 'function') {
-            indexOf = Array.prototype.indexOf;
-        } else {
-            indexOf = function(needle) {
-                var i = -1, index = -1;
-
-                for(i = 0; i < this.length; i++) {
-                    if(this[i].id === needle) {
-                        index = i;
-                        break;
-                    }
-                }
-                return index;
-            };
-        }
-
-        return indexOf.call(this, needle);
-    };
-
 
     var socket = io.connect(window.location.origin);
 
@@ -68,7 +48,14 @@
                             if (self.Imagens.length >= 29) {
                                 self.Imagens.splice(29, 1);
                             }
-                            if (indexOf.call(self.Imagens, result.data[0].id) === -1) {
+                            var isEqual = false;
+                            for (var i = 0; i < self.Imagens.length; ) {
+                                if (self.Imagens[i].id === result.data[0].id){
+                                    isEqual = true;
+                                }
+                            }
+
+                            if (!isEqual) {
                                 self.Imagens.unshift(self.renderizaImagens(result.data[0]));
                                 self.$apply()
                             }
