@@ -50,7 +50,7 @@
                             }
                             var isEqual = false;
                             for (var i = 0; i < self.Imagens.length; ) {
-                                if (self.Imagens[i].id === result.data[0].id){
+                                if (self.Imagens[i].Id === result.data[0].id){
                                     isEqual = true;
                                 }
                             }
