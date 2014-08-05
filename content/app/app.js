@@ -49,7 +49,7 @@
                                 self.Imagens.splice(29, 1);
                             }
                             var isEqual = false;
-                            for (var i = 0; i < self.Imagens.length; ) {
+                            for (var i = 0; i < self.Imagens.length; i++ ) {
                                 if (self.Imagens[i].Id === result.data[0].id){
                                     isEqual = true;
                                 }
