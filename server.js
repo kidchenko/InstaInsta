@@ -33,19 +33,10 @@ Instagram.set('maxSockets', 10);
 * Usando a biblioteca "instagram-node-lib" para usar o Instagram em Real Time
 * com a hashtag (#) macbook
 */
-Instagram.subscriptions.subscribe({
-  object: 'tag',
-  object_id: 'macbook',
-  aspect: 'media',
-  callback_url: urlSite +'callback',
-  type: 'subscription',
-  id: '#'
-});
-
 
 Instagram.subscriptions.subscribe({
     object: 'tag',
-    object_id: 'iphone',
+    object_id: 'beach',
     aspect: 'media',
     callback_url: urlSite +'callback',
     type: 'subscription',
