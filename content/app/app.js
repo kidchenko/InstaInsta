@@ -36,18 +36,20 @@
         self.atualizar = function(){
                 socket.on('show', function(data) {
                     var url = data.show;
-                    $.ajax({
-                        url: url,
-                        type: 'POST',
-                        crossDomain: true,
-                        dataType: 'jsonp'
-                    }).done(function (result) {
-                        if (self.Imagens.length >= 29) {
-                            self.Imagens.splice(29, 1);
-                        }
-                        self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                        self.$apply()
-                    });
+                    setTimeout(
+                        $.ajax({
+                            url: url,
+                            type: 'POST',
+                            crossDomain: true,
+                            dataType: 'jsonp'
+                        }).done(function (result) {
+                            if (self.Imagens.length >= 29) {
+                                self.Imagens.splice(29, 1);
+                            }
+                            self.Imagens.unshift(self.renderizaImagens(result.data[0]));
+                            self.$apply()
+                        }), 3000);
+
                 });
         };
 
