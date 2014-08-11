@@ -38,28 +38,31 @@
         self.atualizar = function(){
                 socket.on('show', function(data) {
                     var url = data.show;
-                    setTimeout(
+
                         $.ajax({
                             url: url,
                             type: 'POST',
                             crossDomain: true,
                             dataType: 'jsonp'
                         }).done(function (result) {
-                            if (self.Imagens.length >= 29) {
-                                self.Imagens.splice(29, 1);
-                            }
-                            var isEqual = false;
-                            for (var i = 0; i < self.Imagens.length; i++ ) {
-                                if (self.Imagens[i].Id === result.data[0].id){
-                                    isEqual = true;
-                                }
-                            }
+                            setTimeout(
+                                function(){
+                                    if (self.Imagens.length >= 29) {
+                                        self.Imagens.splice(29, 1);
+                                    }
+                                    var isEqual = false;
+                                    for (var i = 0; i < self.Imagens.length; i++ ) {
+                                        if (self.Imagens[i].Id === result.data[0].id){
+                                            isEqual = true;
+                                        }
+                                    }
 
-                            if (!isEqual) {
-                                self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                                self.$apply()
-                            }
-                        }), 3000);
+                                    if (!isEqual) {
+                                        self.Imagens.unshift(self.renderizaImagens(result.data[0]));
+                                        self.$apply()
+                                    }
+                                }, 4000);
+                        });
 
                 });
         };
