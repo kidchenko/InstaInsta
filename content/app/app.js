@@ -38,7 +38,7 @@
         self.atualizar = function(){
                 socket.on('show', function(data) {
                     var url = data.show;
-                    var seconds = 0;
+                    var lastRequest = 0;
                         $.ajax({
                             url: url,
                             type: 'POST',
@@ -46,7 +46,7 @@
                             dataType: 'jsonp'
                         }).done(function (result) {
                                 var d = new Date();
-                                seconds = d.getSeconds();
+                                var seconds = d.getSeconds();
 
 
                                 if (self.Imagens.length >= 29) {
@@ -59,9 +59,10 @@
                                     }
                                 }
 
-                                if (!isEqual && seconds  >= seconds + 5) {
+                                if (!isEqual && lastRequest  >= seconds + 5) {
                                     self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                                    self.$apply()                                        
+                                    self.$apply()             
+                                    var lastRequest = seconds;                           
                                 }
                         });
 
