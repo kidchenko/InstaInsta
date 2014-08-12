@@ -43,8 +43,8 @@
                             url: url,
                             type: 'POST',
                             crossDomain: true,
-                            dataType: 'jsonp'
-                            async: false,
+                            dataType: 'jsonp',
+                            async: false
                         }).done(function (result) {
                             setTimeout(
                                 function(){
