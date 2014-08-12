@@ -38,13 +38,17 @@
         self.atualizar = function(){
                 socket.on('show', function(data) {
                     var url = data.show;
-
+                    var seconds = 0;
                         $.ajax({
                             url: url,
                             type: 'POST',
                             crossDomain: true,
                             dataType: 'jsonp'
                         }).done(function (result) {
+                                var d = new Date();
+                                seconds = d.getSeconds();
+
+
                                 if (self.Imagens.length >= 29) {
                                     self.Imagens.splice(29, 1);
                                 }
@@ -55,11 +59,9 @@
                                     }
                                 }
 
-                                if (!isEqual) {
-                                    for (var i = 0; i >= 10000; i--) {
-                                    };
+                                if (!isEqual && seconds  >= seconds + 5) {
                                     self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                                    self.$apply()
+                                    self.$apply()                                        
                                 }
                         });
 
