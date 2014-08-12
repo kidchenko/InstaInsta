@@ -43,26 +43,24 @@
                             url: url,
                             type: 'POST',
                             crossDomain: true,
-                            dataType: 'jsonp',
-                            async: false
+                            dataType: 'jsonp'
                         }).done(function (result) {
-                            setTimeout(
-                                function(){
-                                    if (self.Imagens.length >= 29) {
-                                        self.Imagens.splice(29, 1);
+                                if (self.Imagens.length >= 29) {
+                                    self.Imagens.splice(29, 1);
+                                }
+                                var isEqual = false;
+                                for (var i = 0; i < self.Imagens.length; i++ ) {
+                                    if (self.Imagens[i].Id === result.data[0].id){
+                                        isEqual = true;
                                     }
-                                    var isEqual = false;
-                                    for (var i = 0; i < self.Imagens.length; i++ ) {
-                                        if (self.Imagens[i].Id === result.data[0].id){
-                                            isEqual = true;
-                                        }
-                                    }
+                                }
 
-                                    if (!isEqual) {
-                                        self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                                        self.$apply()
-                                    }
-                                }, 4000);
+                                if (!isEqual) {
+                                    for (var i = 0; i >= 10000; i--) {
+                                    };
+                                    self.Imagens.unshift(self.renderizaImagens(result.data[0]));
+                                    self.$apply()
+                                }
                         });
 
                 });
