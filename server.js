@@ -17,8 +17,8 @@ var pub = __dirname + '/content',
 /**
 * 'client ID' e o 'client secret' para usar o Instagram
 */
-var clientID = '11a8266f79ec4aebb8a210af5684a480',
-    clientSecret = '089b11e57b324f34a74254df778f382f';
+var clientID = '',
+    clientSecret = '';
 
 /**
 * Configuracoes
