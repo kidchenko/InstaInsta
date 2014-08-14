@@ -36,6 +36,9 @@
         };
 
         self.atualizar = function(){
+            var load = true;
+            if (load) {
+                load = false;
                 socket.on('show', function(data) {
                     var url = data.show;
                         $.ajax({
@@ -59,11 +62,13 @@
 
                                 if (!isEqual) {
                                     self.Imagens.unshift(self.renderizaImagens(result.data[0]));
-                                    self.$apply()                                     
+                                    self.$apply();
+                                    setTimeout(function(){load = true; }, 4000);
                                 }
                         });
 
                 });
+            };
         };
 
         self.escolheEstilo = function(numeroEstilo){
