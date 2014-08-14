@@ -36,10 +36,11 @@
         };
 
         self.atualizar = function(){
-            var load = true;
-            if (load) {
-                load = false;
+
                 socket.on('show', function(data) {
+                var load = true;
+                if (load) {
+                    load = false;
                     var url = data.show;
                         $.ajax({
                             url: url,
@@ -66,9 +67,8 @@
                                     setTimeout(function(){load = true; }, 4000);
                                 }
                         });
-
+                };
                 });
-            };
         };
 
         self.escolheEstilo = function(numeroEstilo){
