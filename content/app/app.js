@@ -36,9 +36,8 @@
         };
 
         self.atualizar = function(){
-
-                socket.on('show', function(data) {
                 var load = true;
+                socket.on('show', function(data) {
                 if (load) {
                     load = false;
                     var url = data.show;
